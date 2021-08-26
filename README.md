@@ -49,10 +49,24 @@ docker run --rm -it -p 80:8000 -v $PWD/laravel:/app -w /app php:8.0 php artisan 
 
 ## Angular example
 ```bash
+mkcd /tmp/test/nodejs
+docker run --rm node:12-slim node --version
+docker run --rm node:12-slim npm --version
+docker run --rm -v $PWD:/app -w /app node:12-slim npm i angular
 
+# bingolar webapp
+docker run --rm -v $PWD:/app -w /app -p 4200:4200 node:12-slim npm start
+```
+
+## Docker-compose bingolar example
+```bash
+# docker-compose.yaml
+docker-compose up -d
 ```
 
 ## Alias
 ```bash
+alias php="docker run --rm -it -p 80:8000 -v $PWD:/app -w /app php:8.0 php $@"
 
+alias npm="docker run --rm -it -v $PWD:/app -w /app node:12-slim npm $@"
 ```
